@@ -7,13 +7,18 @@ import { useNavigate } from "react-router";
 const Login = () => {
   const [emailId, setEmailId] = useState("prajwal@baloji.com");
   const [password, setPassword] = useState("prajwal@123");
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await login({ emailId, password });
-    dispatch(addUser(res.data.data));
-    navigate("/");
+    try {
+      const res = await login({ emailId, password });
+      dispatch(addUser(res.data));
+      navigate("/");
+    } catch (error) {
+      setError(error.response.data);
+    }
   };
 
   return (
@@ -33,12 +38,14 @@ const Login = () => {
 
         <label className="label">Password</label>
         <input
-          type="password"
+          // type="password"
           className="input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
 
         <button className="btn btn-neutral mt-4" onClick={handleLogin}>
           Login

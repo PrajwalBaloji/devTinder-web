@@ -1,7 +1,18 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router";
+import { logout } from "../api/auth";
+import { removeUser } from "../redux/slice/user";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    dispatch(removeUser());
+    navigate("/login");
+  };
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -25,15 +36,12 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <NavLink className="justify-between" to={"/profile"}>
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </NavLink>
               </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
+              <li onClick={handleLogout}>
                 <a>Logout</a>
               </li>
             </ul>
