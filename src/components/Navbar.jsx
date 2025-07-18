@@ -17,7 +17,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">😇 Dev Tinder</a>
+        <NavLink to={"/"} className="btn btn-ghost text-xl">
+          😇 Dev Tinder
+        </NavLink>
       </div>
       {user && (
         <div className="flex gap-2">
@@ -28,7 +30,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="profile image" src={user.photoUrl} />
+                <img alt="profile image" src={user.photoURL} />
               </div>
             </div>
             <ul
@@ -39,6 +41,22 @@ const Navbar = () => {
                 <NavLink className="justify-between" to={"/profile"}>
                   Profile
                   <span className="badge">New</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/connections"
+                  className="justify-between hover:bg-gray-800 rounded-md p-2"
+                >
+                  Connections <span className="badge badge-error">💗</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/requests"
+                  className="justify-between hover:bg-gray-800 rounded-md p-2"
+                >
+                  Requests <span className="badge badge-warning">👁️</span>
                 </NavLink>
               </li>
               <li onClick={handleLogout}>

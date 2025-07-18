@@ -7,6 +7,17 @@ export const getProfile = async () => {
 
     return response.data;
   } catch (error) {
-    return error;
+    console.error("Profile API Error:", error);
+    throw error;
+  }
+};
+
+export const updateProfile = async (data) => {
+  try {
+    const response = await baseInstance.patch("/profile/edit", data);
+    return response.data;
+  } catch (error) {
+    console.error("Update Profile API Error:", error);
+    throw error;
   }
 };

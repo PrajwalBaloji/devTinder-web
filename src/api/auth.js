@@ -5,6 +5,11 @@ export const login = async (credentials) => {
   return response.data;
 };
 
+export const signUp = async (credentials) => {
+  const response = await baseInstance.post("/signup", credentials);
+  return response.data;
+};
+
 export const logout = async () => {
   try {
     const response = await baseInstance.post("/logout");
