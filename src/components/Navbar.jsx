@@ -14,10 +14,15 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const defaultPhotoUrl = {
-    male: "https://img.freepik.com/premium-photo/bearded-man-illustration_665280-67047.jpg",
-    female:
-      "https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg",
+  const getProfileImage = () => {
+    const defaultPhotoUrl = {
+      male: "https://img.freepik.com/premium-photo/bearded-man-illustration_665280-67047.jpg",
+      female:
+        "https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg",
+    };
+    if (user.photoUrl) return user.photoUrl;
+    if (user.gender) return defaultPhotoUrl[user.gender];
+    return "https://static.vecteezy.com/system/resources/previews/037/336/395/non_2x/user-profile-flat-illustration-avatar-person-icon-gender-neutral-silhouette-profile-picture-free-vector.jpg";
   };
 
   return (
@@ -36,10 +41,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="profile image"
-                  src={user.photoURL || defaultPhotoUrl[user.gender]}
-                />
+                <img alt="profile image" src={getProfileImage()} />
               </div>
             </div>
             <ul
