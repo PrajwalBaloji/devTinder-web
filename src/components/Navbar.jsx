@@ -14,6 +14,12 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const defaultPhotoUrl = {
+    male: "https://img.freepik.com/premium-photo/bearded-man-illustration_665280-67047.jpg",
+    female:
+      "https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg",
+  };
+
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
@@ -30,7 +36,10 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="profile image" src={user.photoURL} />
+                <img
+                  alt="profile image"
+                  src={user.photoURL || defaultPhotoUrl[user.gender]}
+                />
               </div>
             </div>
             <ul
