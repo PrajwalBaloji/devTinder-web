@@ -9,10 +9,16 @@ const UserCard = ({ user, getFeed }) => {
     getFeed();
   };
 
+  const defaultPhotoUrl = {
+    male: "https://img.freepik.com/premium-photo/bearded-man-illustration_665280-67047.jpg",
+    female:
+      "https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg",
+  };
+
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>
-        <img src={photoUrl} alt="Shoes" />
+        <img src={photoUrl || defaultPhotoUrl[gender]} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{firstName}</h2>
